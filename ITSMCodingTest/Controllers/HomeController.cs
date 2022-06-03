@@ -26,6 +26,8 @@ namespace ITSMCodingTest.Controllers
             {
                 // Read the countries.json file within the Helpers folder and map to a list of CountryView, sorted alphabetically
                 // << YOUR CODE HERE >>
+                throw new NotImplementedException();
+
             }
             catch (Exception e)
             {
@@ -44,6 +46,7 @@ namespace ITSMCodingTest.Controllers
             {
                 // Add a new AddressRecord entry to the Entities
                 // << YOUR CODE HERE >>
+                throw new NotImplementedException();
             }
             catch (Exception e)
             {
@@ -62,6 +65,7 @@ namespace ITSMCodingTest.Controllers
             {
                 // Retrieve all of the records
                 // << YOUR CODE HERE >>
+                throw new NotImplementedException();
             }
             catch (Exception e)
             {
@@ -79,6 +83,7 @@ namespace ITSMCodingTest.Controllers
         [HttpPost]
         public async Task<JsonResult> SaveEntry(AddressRecord recordData)
         {
+            throw new NotImplementedException();
             try
             {
                 using (var db = new AddressBookEntities())
@@ -130,6 +135,7 @@ namespace ITSMCodingTest.Controllers
             {
                 // Get the record to delete, and fail if the record does not exist
                 // << YOUR CODE HERE >>
+                throw new NotImplementedException();
             }
             catch (Exception e)
             {
