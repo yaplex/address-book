@@ -61,10 +61,10 @@ function initAddressBook() {
         type: "GET",
         dataType: "json"
     }).done(function (data) {
-        if (data.result) {
-            addressBookRecords = data.resultSet;
+        if (data) {
+            addressBookRecords = data;
             sortRecords();
-            displayRecords();
+            displayRecords(13);
             return;
         }
         toastr.error(data.error, "Failed to get Load Records");
@@ -79,6 +79,20 @@ function initAddressBook() {
 // Displays the address book records, with an optional parameter to pre-select an ID of a record
 function displayRecords(preselectId) {
     // << YOUR CODE HERE >>
+    var container = $(".address-book-entries");
+    addressBookRecords.forEach(function(record) {
+        var recordHtml = jQuery('<div>',
+            {
+                id: 'entity-' + record.id,
+                class: 'address-book-record'
+            }).text(record.firstName);
+
+        if (preselectId == record.id) {
+            recordHtml.addClass("active");
+        }
+
+        recordHtml.appendTo(container);
+    });
 }
 
 // Adds a new entry with the First and Last name of "New"

@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using ITSMCodingTest.Helpers;
 using ITSMCodingTest.Models;
+using Newtonsoft.Json;
 
 namespace ITSMCodingTest.Controllers
 {
@@ -65,7 +67,32 @@ namespace ITSMCodingTest.Controllers
             {
                 // Retrieve all of the records
                 // << YOUR CODE HERE >>
-                throw new NotImplementedException();
+                return Json(new List<AddressRecord>() {new AddressRecord()
+                {
+                    Address = "111 Pacific Ave.",
+                    City = "Toronto", 
+                    Country = "Canada",
+                    EmailAddress = "alex@yaplex.com",
+                    FirstName = "Alex",
+                    LastName = "Shapovalov",
+                    Id = 13,
+                    PhoneNumber = "647 328 3809",
+                    PostalZip = "M6P 2P2", 
+                    ProvinceState = "Ontario"
+                },
+                    new AddressRecord(){
+                        Address = "222 Pacific Ave.",
+                        City = "Toronto 2",
+                        Country = "Canada 2",
+                        EmailAddress = "alex2@yaplex.com",
+                        FirstName = "Alex 2",
+                        LastName = "Shapovalov 2",
+                        Id = 14,
+                        PhoneNumber = "647 328 3809 2",
+                        PostalZip = "M6P 2P3",
+                        ProvinceState = "Ontario 2"
+                    }
+                }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
             {
