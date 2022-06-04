@@ -50,9 +50,9 @@ export class AddressBookEntryEditComponent implements OnInit {
 
       this.showLoading();
       this.addressBookService.save(f.value).subscribe(data => {
+        this.hideLoading();
         this.selectRecordEvent.emit(f.value);
         this.recordSavedUpdatedEvent.emit();
-        this.hideLoading();
       });
     }
   }
@@ -65,8 +65,8 @@ export class AddressBookEntryEditComponent implements OnInit {
     console.info(`Deleting: ${recordId}`);
     this.showLoading();
     this.addressBookService.delete(recordId).subscribe(data => {
-      this.recordDeletedEvent.emit();
       this.hideLoading();
+      this.recordDeletedEvent.emit();
     });
   }
 }

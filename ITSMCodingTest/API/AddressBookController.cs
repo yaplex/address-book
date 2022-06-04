@@ -40,19 +40,13 @@ namespace ITSMCodingTest.API
         public async Task Post([FromBody] AddressBookRecordDto record)
         {
             await _mediator.Send(new CreateAddressBookRecordCommand(record));
-
-            record.Id = _index++;
-            _inMemoryCache.Add(record);
-
-            Thread.Sleep(1000); // long running operation
         }
 
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody] AddressBookRecordDto record)
+        public async Task Put(int id, [FromBody] AddressBookRecordDto record)
         {
-            _inMemoryCache.Remove(_inMemoryCache.Find(x => x.Id == id));
-            _inMemoryCache.Add(record);
-
+            await _mediator.Send(new UpdateAddressBookRecordCommand(id, record));
+            
             Thread.Sleep(1000); // long running operation
         }
 

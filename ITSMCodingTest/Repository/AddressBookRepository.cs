@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,8 +11,11 @@ namespace ITSMCodingTest.Repository
 {
     public interface IAddressBookRepository
     {
-        Task SaveAsync(AddressRecord record);
+        void Add(AddressRecord record);
         Task<IEnumerable<AddressRecord>> LoadAllAsync();
+        Task<AddressRecord> LoadAsync(int id);
+
+        Task Commit();
     }
     public class AddressBookRepository: IAddressBookRepository
     {
@@ -21,15 +25,25 @@ namespace ITSMCodingTest.Repository
         {
             _dbContext = dbContext;
         }
-        public async Task SaveAsync(AddressRecord record)
+        public void Add(AddressRecord record)
         {
             _dbContext.AddressRecords.Add(record);
-            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<AddressRecord>> LoadAllAsync()
         {
             return await _dbContext.AddressRecords.ToListAsync();
+        }
+
+        public async Task<AddressRecord> LoadAsync(int id)
+        {
+            var record = await _dbContext.AddressRecords.FindAsync(id);
+            return record;
+        }
+
+        public async Task Commit()
+        {
+            await _dbContext.SaveChangesAsync();
         }
     }
 }
