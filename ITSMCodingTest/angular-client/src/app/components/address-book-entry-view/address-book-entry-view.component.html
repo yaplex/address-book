@@ -11,8 +11,8 @@
             <div class="col-6" id="displayAddressColumn">
                 Address
                 <ul class="fa-ul">
-                    <li><span class="fa-li"><i class="fas fa-map-marker-alt"></i></span><span
-                            id="displayAddress">{{addressBookReadOnly.Address}}</span></li>
+                    <li><span class="fa-li"><i class="fas fa-map-marker-alt"></i></span><a
+                         href="https://maps.google.com/?q={{addressBookReadOnly.FullAddress}}"   id="displayAddress" target="_blank">{{addressBookReadOnly.Address}}</a></li>
                 </ul>
             </div>
             <div class="col-6" id="displayContactColumn">

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Mvc;
+using ITSMCodingTest.Common.Dto;
 using ITSMCodingTest.Models;
 
 namespace ITSMCodingTest.API
@@ -8,11 +9,11 @@ namespace ITSMCodingTest.API
     public class AddressBookController : ApiController
     {
         // GET api/<controller>
-        public IEnumerable<AddressRecord> Get()
+        public IEnumerable<AddressBookRecordDto> Get()
         {
-            return new List<AddressRecord>()
+            var retult =  new List<AddressBookRecordDto>()
             {
-                new AddressRecord()
+                new AddressBookRecordDto()
                 {
                     Address = "111 Pacific Ave.",
                     City = "Toronto",
@@ -25,7 +26,7 @@ namespace ITSMCodingTest.API
                     PostalZip = "M6P 2P2",
                     ProvinceState = "Ontario"
                 },
-                new AddressRecord()
+                new AddressBookRecordDto()
                 {
                     Address = "222 Pacific Ave.",
                     City = "Toronto 2",
@@ -39,6 +40,12 @@ namespace ITSMCodingTest.API
                     ProvinceState = "Ontario 2"
                 }
             };
+            foreach (var a in retult)
+            {
+                a.FullAddress = $"{a.Address} {a.AddressLine2}, {a.City}, {a.ProvinceState} {a.PostalZip} {a.Country}";
+            }
+
+            return retult;
         }
 
         // GET api/<controller>/5

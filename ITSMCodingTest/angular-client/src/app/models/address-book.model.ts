@@ -10,4 +10,5 @@ export class AddressBook {
     Country: string = "";
     PhoneNumber: string = "";
     EmailAddress: string = "";
+    FullAddress: string = "";
 }
