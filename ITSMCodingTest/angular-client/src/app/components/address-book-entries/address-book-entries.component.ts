@@ -31,13 +31,23 @@ export class AddressBookEntriesComponent implements OnInit, OnDestroy {
 
   recordSelected(record: AddressBook): void {
     this.selectedAddressBookEvent.emit(record);
+
+    this.addressBookRecords.forEach(r => {
+      r.IsActive = false;      
+    });
+    
+    record.IsActive = true;
   }
 
-  addClass(event: any): void {
+  addClassActive(event: any): void {
+    $(event.target).addClass("active");
+  }
+
+  addClassHover(event: any): void {
     $(event.target).addClass("hover");
   }
 
-  removeClass(event: any): void {
+  removeClassHover(event: any): void {
     $(event.target).removeClass("hover");
   }
 

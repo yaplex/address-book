@@ -1,8 +1,8 @@
 <div class="address-book-entries">
-    <div *ngFor="let record of addressBookRecords; let i = index" class="address-book-record item-{{i}}"
-        (mouseover)="addClass($event)" 
-        (mouseout)="removeClass($event)" 
-        (click)="recordSelected(record)" >
+    <div [ngClass]="{'active': record.IsActive}" *ngFor="let record of addressBookRecords; let i = index" class="address-book-record item-{{i}}"
+        (mouseover)="addClassHover($event)" 
+        (mouseout)="removeClassHover($event)" 
+        (click)="recordSelected(record);" >
         {{record.FirstName}} - {{record.LastName}}
     </div>
 </div>

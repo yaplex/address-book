@@ -9,6 +9,7 @@ namespace ITSMCodingTest.Mapping
         public AddressBookMapping()
         {
             CreateMap<AddressBookRecordDto, AddressRecord>();
+            CreateMap<AddressRecord, AddressBookRecordDto>().ForMember(d=>d.FullAddress, o=>o.MapFrom(s=> $"{s.Address} {s.AddressLine2} {s.City} {s.ProvinceState} {s.PostalZip} {s.Country}"));
         }
     }
 }

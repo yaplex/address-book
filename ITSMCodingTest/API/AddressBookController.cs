@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using ITSMCodingTest.Common.Dto;
 using ITSMCodingTest.Domain.AddressBook.Commands;
+using ITSMCodingTest.Domain.AddressBook.Queries;
 using MediatR;
 
 namespace ITSMCodingTest.API
@@ -20,12 +21,10 @@ namespace ITSMCodingTest.API
         }
 
         // GET api/<controller>
-        public IEnumerable<AddressBookRecordDto> Get()
+        public async Task<IEnumerable<AddressBookRecordDto>> Get()
         {
-            foreach (var a in _inMemoryCache)
-                a.FullAddress = $"{a.Address} {a.AddressLine2}, {a.City}, {a.ProvinceState} {a.PostalZip} {a.Country}";
-
-            return _inMemoryCache;
+            var allRecords = await _mediator.Send(new GetAllRecordsQuery());
+            return allRecords;
         }
 
         // GET api/<controller>/5

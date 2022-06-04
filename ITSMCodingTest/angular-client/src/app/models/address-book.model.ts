@@ -11,4 +11,7 @@ export class AddressBook {
     PhoneNumber: string = "";
     EmailAddress: string = "";
     FullAddress: string = "";
+    
+
+    IsActive: boolean = false;
 }

@@ -176,6 +176,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Domain\AddressBook\Commands\CreateAddressBookRecordCommand.cs" />
     <Compile Include="Domain\AddressBook\Commands\CreateAddressBookRecordCommandHandler.cs" />
+    <Compile Include="Domain\AddressBook\Queries\GetAllRecordsQuery.cs" />
+    <Compile Include="Domain\AddressBook\Queries\GetAllRecordsQueryHandler.cs" />
     <Compile Include="Dtos\AddressBookRecordDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
