@@ -1,0 +1,90 @@
+<div class="address-book-display" id="editableDisplay">
+    <form #addressEntityForm="ngForm" (ngSubmit)="onSaveAddressBookEntity(addressEntityForm)">
+      <input type="hidden" id="Id" name="Id" [(ngModel)]="addressBookEditable.Id" />
+      
+        <!--  Photo  -->
+        <div class="row mb-3">
+            <label class="col-2 control-label">Photo:</label>
+            <div class="col">
+                <img id="editPhoto" src="/Content/Images/blankuser.png" class="record-photo"
+                    onerror="this.src = 'Content/Images/blankuser.png';" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-2 control-label" for="photoUpload">New Photo:</label>
+            <div class="col">
+                <input type="file" class="form-control" id="photoUpload" />
+            </div>
+        </div>
+        <!--  First and Last Name  -->
+        <div class="row mb-3">
+            <label class="col-2 control-label" for="FirstName">First Name:</label>
+            <div class="col-4">
+                <input type="text" id="FirstName" name="FirstName" class="form-control" data-required autocomplete="off"
+                    maxlength="100" [(ngModel)]="addressBookEditable.FirstName" />
+            </div>
+            <label class="col-2 control-label" for="LastName">Last Name:</label>
+            <div class="col-4">
+                <input type="text" id="LastName" name="LastName" class="form-control" data-required autocomplete="off"
+                    maxlength="100" [(ngModel)]="addressBookEditable.LastName"/>
+            </div>
+        </div>
+        <!--  Address  -->
+        <div class="row mb-3">
+            <label class="col-2 control-label" for="Address">Address:</label>
+            <div class="col">
+                <input type="text" id="Address" name="Address" class="form-control" autocomplete="off" maxlength="100" [(ngModel)]="addressBookEditable.Address"/>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col offset-2">
+                <input type="text" id="AddressLine2" name="AddressLine2" class="form-control" autocomplete="off" maxlength="100" [(ngModel)]="addressBookEditable.AddressLine2"/>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-2 control-label" for="inputCity">City:</label>
+            <div class="col-4">
+                <input type="text" id="City" name="City" class="form-control" autocomplete="off" maxlength="100" [(ngModel)]="addressBookEditable.City" />
+            </div>
+            <label class="col-2 control-label" for="inputProvinceState">Province/State:</label>
+            <div class="col-4">
+                <input type="text" id="ProvinceState" name="ProvinceState" class="form-control" autocomplete="off" maxlength="100" [(ngModel)]="addressBookEditable.ProvinceState"/>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-2 control-label" for="PostalZip">Postal/Zip Code:</label>
+            <div class="col-4">
+                <input type="text" id="PostalZip" name="PostalZip" class="form-control" autocomplete="off" maxlength="50" [(ngModel)]="addressBookEditable.PostalZip"/>
+            </div>
+            <label class="col-2 control-label" for="Country">Country:</label>
+            <div class="col-4">
+                <select class="form-control" id="Country" name="Country" autocomplete="off" maxlength="50" [(ngModel)]="addressBookEditable.Country">
+                    <option *ngFor="let country of allCountries" [value]="country.Name">{{country.Name}}</option>
+                </select>
+            </div>
+        </div>
+        <!--  Phone Number and Email  -->
+        <div class="row mb-3">
+            <label class="col-2 control-label" for="PhoneNumber">Phone:</label>
+            <div class="col-4">
+                <input type="text" id="PhoneNumber" name="PhoneNumber" class="form-control" autocomplete="off" maxlength="50" [(ngModel)]="addressBookEditable.PhoneNumber"/>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-2 control-label" for="EmailAddress">Email:</label>
+            <div class="col">
+                <input type="text" id="EmailAddress" name="EmailAddress" class="form-control" autocomplete="off" maxlength="100" [(ngModel)]="addressBookEditable.EmailAddress"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col offset-2">
+                <button id="deleteButton" onclick="deleteEntry();"
+                    class="btn btn-sm btn-outline-danger float-right">Delete</button>
+                <button id="saveButton" onclick="saveEntry();" class="btn btn-sm btn-outline-success">Save</button>
+                <button id="cancelButton" onclick="selectRecord(currentRecord.id);"
+                    class="btn btn-sm btn-outline-secondary">Cancel</button>
+            </div>
+        </div>
+    </form>
+
+</div>

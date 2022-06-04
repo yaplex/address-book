@@ -1,5 +1,5 @@
 <!-- <router-outlet></router-outlet> -->
-<div class="address-book-container" >
+<div class="address-book-container">
 
   <!--  This section is for the Toolbar  -->
   <div class="row">
@@ -8,7 +8,8 @@
         <button id="newButton" class="btn btn-outline-dark toolbar-button" title="Add Entry" data-toggle="tooltip"
           onclick="addNewEntry();"><i class="fas fa-plus"></i></button>
         <button id="editButton" class="btn btn-outline-dark toolbar-button" title="Edit" data-toggle="tooltip"
-          onclick="editRecord(currentRecord.id);" disabled><i class="fas fa-edit"></i></button>
+          (click)="editRecord(selectedAddressBookRecord)" [disabled]="!canEditRecord"><i
+            class="fas fa-edit"></i></button>
       </div>
     </div>
   </div>
@@ -19,100 +20,15 @@
   <div class="row">
     <!--  This part is the record entries  -->
     <div class="col-4">
-        <app-address-book-entries 
-        (selectedAddressBookEvent)="selectedAddressBookRecordHandler($event)"></app-address-book-entries>
+      <app-address-book-entries (selectedAddressBookEvent)="selectedAddressBookRecordHandler($event)">
+      </app-address-book-entries>
     </div>
 
-    <!--  This part is the non-editable display  -->
-    <div class="col-8 pl-0" >
-        <app-address-book-entry-view *ngIf="showReadOnlyView" [addressBookReadOnly]="selectedAddressBookRecord"></app-address-book-entry-view>
-    </div>
+    <div class="col-8 pl-0">
+      <app-address-book-entry-view *ngIf="showReadOnlyView" [addressBookReadOnly]="selectedAddressBookRecord">
+      </app-address-book-entry-view>
 
-    <!--  This part is the editable portion of the display  -->
-    <div class="col-8 pl-0" id="editableDisplay" style="display: none;">
-      <div class="address-book-display">
-        <!--  Photo  -->
-        <div class="row mb-3">
-          <label class="col-2 control-label">Photo:</label>
-          <div class="col">
-            <img id="editPhoto" src="/Content/Images/blankuser.png" class="record-photo"
-              onerror="this.src = 'Content/Images/blankuser.png';" />
-          </div>
-        </div>
-        <div class="row mb-3">
-          <label class="col-2 control-label" for="photoUpload">New Photo:</label>
-          <div class="col">
-            <input type="file" class="form-control" id="photoUpload" />
-          </div>
-        </div>
-        <!--  First and Last Name  -->
-        <div class="row mb-3">
-          <label class="col-2 control-label" for="inputFirstName">First Name:</label>
-          <div class="col-4">
-            <input type="text" id="inputFirstName" class="form-control" data-required autocomplete="off"
-              maxlength="100" />
-          </div>
-          <label class="col-2 control-label" for="inputLastName">Last Name:</label>
-          <div class="col-4">
-            <input type="text" id="inputLastName" class="form-control" data-required autocomplete="off"
-              maxlength="100" />
-          </div>
-        </div>
-        <!--  Address  -->
-        <div class="row mb-3">
-          <label class="col-2 control-label" for="inputAddress">Address:</label>
-          <div class="col">
-            <input type="text" id="inputAddress" class="form-control" autocomplete="off" maxlength="100" />
-          </div>
-        </div>
-        <div class="row mb-3">
-          <div class="col offset-2">
-            <input type="text" id="inputAddressLine2" class="form-control" autocomplete="off" maxlength="100" />
-          </div>
-        </div>
-        <div class="row mb-3">
-          <label class="col-2 control-label" for="inputCity">City:</label>
-          <div class="col-4">
-            <input type="text" id="inputCity" class="form-control" autocomplete="off" maxlength="100" />
-          </div>
-          <label class="col-2 control-label" for="inputProvinceState">Province/State:</label>
-          <div class="col-4">
-            <input type="text" id="inputProvinceState" class="form-control" autocomplete="off" maxlength="100" />
-          </div>
-        </div>
-        <div class="row mb-3">
-          <label class="col-2 control-label" for="inputPostalZip">Postal/Zip Code:</label>
-          <div class="col-4">
-            <input type="text" id="inputPostalZip" class="form-control" autocomplete="off" maxlength="50" />
-          </div>
-          <label class="col-2 control-label" for="selectCountry">Country:</label>
-          <div class="col-4">
-            <select class="form-control" id="selectCountry" autocomplete="off" maxlength="50"></select>
-          </div>
-        </div>
-        <!--  Phone Number and Email  -->
-        <div class="row mb-3">
-          <label class="col-2 control-label" for="inputPhoneNumber">Phone:</label>
-          <div class="col-4">
-            <input type="text" id="inputPhoneNumber" class="form-control" autocomplete="off" maxlength="50" />
-          </div>
-        </div>
-        <div class="row mb-3">
-          <label class="col-2 control-label" for="inputEmailAddress">Email:</label>
-          <div class="col">
-            <input type="text" id="inputEmailAddress" class="form-control" autocomplete="off" maxlength="100" />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col offset-2">
-            <button id="deleteButton" onclick="deleteEntry();"
-              class="btn btn-sm btn-outline-danger float-right">Delete</button>
-            <button id="saveButton" onclick="saveEntry();" class="btn btn-sm btn-outline-success">Save</button>
-            <button id="cancelButton" onclick="selectRecord(currentRecord.id);"
-              class="btn btn-sm btn-outline-secondary">Cancel</button>
-          </div>
-        </div>
-      </div>
+      <app-address-book-entry-edit *ngIf="showEditView" [addressBookEditable]="selectedAddressBookRecord"></app-address-book-entry-edit>
     </div>
   </div>
 

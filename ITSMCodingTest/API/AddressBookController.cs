@@ -16,6 +16,7 @@ namespace ITSMCodingTest.API
                 new AddressBookRecordDto()
                 {
                     Address = "111 Pacific Ave.",
+                    AddressLine2 = "Apt 1234",
                     City = "Toronto",
                     Country = "Canada",
                     EmailAddress = "alex@yaplex.com",
@@ -55,12 +56,12 @@ namespace ITSMCodingTest.API
         }
 
         // POST api/<controller>
-        public void Post([FromBody] string value)
+        public void Post([FromBody] AddressBookRecordDto record)
         {
         }
 
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] AddressBookRecordDto record)
         {
         }
 
