@@ -54,6 +54,7 @@ function sortRecords() {
 
 // Initializes the Address Book by loading the records and country dropdown.
 function initAddressBook() {
+    return;
     // Load all of the Entries and display them
     // This ajax call is provided to you as a base for how your other calls need to be structured
     $.ajax({
@@ -79,20 +80,20 @@ function initAddressBook() {
 // Displays the address book records, with an optional parameter to pre-select an ID of a record
 function displayRecords(preselectId) {
     // << YOUR CODE HERE >>
-    var container = $(".address-book-entries");
-    addressBookRecords.forEach(function(record) {
-        var recordHtml = jQuery('<div>',
-            {
-                id: 'entity-' + record.id,
-                class: 'address-book-record'
-            }).text(record.firstName);
-
-        if (preselectId == record.id) {
-            recordHtml.addClass("active");
-        }
-
-        recordHtml.appendTo(container);
-    });
+//    var container = $(".address-book-entries");
+//    addressBookRecords.forEach(function(record) {
+//        var recordHtml = jQuery('<div>',
+//            {
+//                id: 'entity-' + record.id,
+//                class: 'address-book-record'
+//            }).text(record.firstName);
+//
+//        if (preselectId == record.id) {
+//            recordHtml.addClass("active");
+//        }
+//
+//        recordHtml.appendTo(container);
+//    });
 }
 
 // Adds a new entry with the First and Last name of "New"

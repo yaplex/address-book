@@ -28,6 +28,20 @@ namespace ITSMCodingTest
 
             bundles.Add(new StyleBundle("~/Content/fontawesome").Include(
                 "~/Fonts/fontawesome/css/all.css"));
+
+
+            // Angular bundles
+            bundles.Add(new Bundle("~/bundles/angular-client")
+                .Include(
+                    "~/angular-client/dist/inline.*",
+                    "~/angular-client/dist/polyfills.*",
+                    "~/angular-client/dist/scripts.*",
+                    "~/angular-client/dist/vendor.*",
+                    "~/angular-client/dist/runtime.*",
+                    "~/angular-client/dist/main.*"));
+
+            bundles.Add(new StyleBundle("~/Content/Angular")
+                .Include("~/angular-client/dist/styles.*"));
         }
     }
 }

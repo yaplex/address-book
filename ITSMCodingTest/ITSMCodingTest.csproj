@@ -63,6 +63,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -71,6 +74,12 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -128,6 +137,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -155,8 +165,13 @@
     <Compile Include="Helpers\OperationResult.cs" />
     <Compile Include="Models\CountryView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="API\AddressBookController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="angular-client\.gitignore" />
+    <Content Include="angular-client\karma.conf.js" />
+    <Content Include="angular-client\src\app\app.component.html" />
+    <Content Include="angular-client\src\favicon.ico" />
     <Content Include="App_Data\AddressBook.mdf" />
     <Content Include="App_Data\AddressBook_log.ldf">
       <DependentUpon>AddressBook.mdf</DependentUpon>
@@ -244,6 +259,18 @@
       <DependentUpon>AddressBookModel.edmx</DependentUpon>
     </Content>
     <Content Include="Helpers\countries.json" />
+    <Content Include="angular-client\.browserslistrc" />
+    <Content Include="angular-client\.editorconfig" />
+    <Content Include="angular-client\angular.json" />
+    <Content Include="angular-client\package-lock.json" />
+    <Content Include="angular-client\package.json" />
+    <Content Include="angular-client\README.md" />
+    <Content Include="angular-client\src\app\app.component.sass" />
+    <Content Include="angular-client\src\assets\.gitkeep" />
+    <Content Include="angular-client\src\styles.sass" />
+    <Content Include="angular-client\tsconfig.app.json" />
+    <Content Include="angular-client\tsconfig.json" />
+    <Content Include="angular-client\tsconfig.spec.json" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -350,6 +377,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="angular-client\dist\" />
     <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
@@ -358,6 +386,14 @@
     <Content Include="Scripts\jquery-3.6.0.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="angular-client\src\app\app-routing.module.ts" />
+    <TypeScriptCompile Include="angular-client\src\app\app.component.ts" />
+    <TypeScriptCompile Include="angular-client\src\app\app.module.ts" />
+    <TypeScriptCompile Include="angular-client\src\environments\environment.prod.ts" />
+    <TypeScriptCompile Include="angular-client\src\environments\environment.ts" />
+    <TypeScriptCompile Include="angular-client\src\main.ts" />
+    <TypeScriptCompile Include="angular-client\src\polyfills.ts" />
+    <TypeScriptCompile Include="angular-client\src\test.ts" />
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>

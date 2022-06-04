@@ -79,6 +79,11 @@
     color: #ffffff;
 }
 
+.address-book-record.hover {
+    background-color: #312aca;
+    color: #fff !important;
+}
+
 .address-book-record.active:hover {
     color: #ffffff;
 }
