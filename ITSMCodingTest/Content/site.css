@@ -108,3 +108,12 @@
     margin-top: 7px;
     text-align: right;
 }
+
+
+input.ng-invalid {
+    background-color: pink;
+}
+
+input.ng-touched.ng-valid {
+    background-color: #d2f8d2;
+}

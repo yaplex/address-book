@@ -20,7 +20,7 @@ export class AddressBookEntriesComponent implements OnInit, OnDestroy {
   constructor(private addressBookService: AddressBookService) { }
   ngOnInit(): void {
     this.eventsSubscription = this.reloadAllRecordsEvent.subscribe(() => {
-        this.loadAllRecords();
+      this.loadAllRecords();
     });
 
     this.loadAllRecords();
@@ -29,7 +29,7 @@ export class AddressBookEntriesComponent implements OnInit, OnDestroy {
     this.eventsSubscription.unsubscribe();
   }
 
-  recordSelected(record: AddressBook): void{
+  recordSelected(record: AddressBook): void {
     this.selectedAddressBookEvent.emit(record);
   }
 

@@ -20,8 +20,8 @@ export class AddressBookEntryEditComponent implements OnInit {
     this._addressBookEditable = Object.assign({}, value);
   }
 
-
   @Output() recordSavedUpdatedEvent = new EventEmitter<AddressBook>();
+  @Output() selectRecordEvent = new EventEmitter<AddressBook>();
 
   allCountries: Array<Country> = [];
   constructor(private addressBookService: AddressBookService) {
@@ -29,6 +29,7 @@ export class AddressBookEntryEditComponent implements OnInit {
     this.allCountries.push(new Country("USA", "US", "USA"));
     this.allCountries.push(new Country("Germany", "DE", "DEU"));
     this.allCountries.push(new Country("Australia", "AU", "AUS"));
+
   }
 
   ngOnInit(): void {
@@ -37,9 +38,19 @@ export class AddressBookEntryEditComponent implements OnInit {
   onSaveAddressBookEntity(f: NgForm): void {
     if (f.valid) {
       console.log("Form Submitted!");
+
       this.addressBookService.save(f.value).subscribe(data => {
         this.recordSavedUpdatedEvent.emit();
       });
     }
+  }
+
+  selectRecord(record: AddressBook): void{
+      this.selectRecordEvent.emit(record);
+  }
+
+  onDeleteRecord(recordId: number): void {
+    console.info(`Deleting: ${recordId}`);
+    this.recordSavedUpdatedEvent.emit();
   }
 }

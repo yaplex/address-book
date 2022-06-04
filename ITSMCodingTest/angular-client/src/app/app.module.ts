@@ -8,7 +8,8 @@ import { AddressBookService } from './services/addressbook.service';
 import { AddressBookEntriesComponent } from './components/address-book-entries/address-book-entries.component';
 import { AddressBookEntryViewComponent } from './components/address-book-entry-view/address-book-entry-view.component';
 import { AddressBookEntryEditComponent } from './components/address-book-entry-edit/address-book-entry-edit.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,9 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    CommonModule,
+    ReactiveFormsModule
   ],
   providers: [AddressBookService],
   bootstrap: [AppComponent]

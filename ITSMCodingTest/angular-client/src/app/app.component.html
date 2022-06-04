@@ -29,7 +29,7 @@
       <app-address-book-entry-view *ngIf="showReadOnlyView" [addressBookReadOnly]="selectedAddressBookRecord">
       </app-address-book-entry-view>
 
-      <app-address-book-entry-edit *ngIf="showEditView" [addressBookEditable]="selectedAddressBookRecord"  (recordSavedUpdatedEvent)="recordSavedUpdatedHandler()"></app-address-book-entry-edit>
+      <app-address-book-entry-edit *ngIf="showEditView" [addressBookEditable]="selectedAddressBookRecord"  (recordSavedUpdatedEvent)="recordSavedUpdatedHandler()" (selectRecordEvent)="selectedAddressBookRecordHandler($event)"></app-address-book-entry-edit>
     </div>
   </div>
 
