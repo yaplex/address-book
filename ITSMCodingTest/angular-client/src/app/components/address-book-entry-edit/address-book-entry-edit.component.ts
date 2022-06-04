@@ -3,7 +3,7 @@ import { AddressBook } from 'src/app/models/address-book.model';
 import { Country } from 'src/app/models/country.model';
 import { NgForm } from '@angular/forms';
 import { AddressBookService } from 'src/app/services/addressbook.service';
-
+declare var $: any;
 @Component({
   selector: 'app-address-book-entry-edit',
   templateUrl: './address-book-entry-edit.component.html',
@@ -35,14 +35,23 @@ export class AddressBookEntryEditComponent implements OnInit {
 
   ngOnInit(): void {
   }
+private showLoading(): void {
+  $(".loading-overlay-panel").show();
+}
+
+private hideLoading():void {
+  $(".loading-overlay-panel").hide();
+}
 
   onSaveAddressBookEntity(f: NgForm): void {
     if (f.valid) {
       console.log("Form Submitted!");
 
+      this.showLoading();
       this.addressBookService.save(f.value).subscribe(data => {
         this.selectRecordEvent.emit(f.value);
         this.recordSavedUpdatedEvent.emit();
+        this.hideLoading();
       });
     }
   }
@@ -53,8 +62,10 @@ export class AddressBookEntryEditComponent implements OnInit {
 
   onDeleteRecord(recordId: number): void {
     console.info(`Deleting: ${recordId}`);
+    this.showLoading();
     this.addressBookService.delete(recordId).subscribe(data=> {
       this.recordDeletedEvent.emit();
+      this.hideLoading();
     });
   }
 }

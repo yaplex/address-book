@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using System.Web.Http;
 using ITSMCodingTest.Common.Dto;
 
@@ -63,6 +64,8 @@ namespace ITSMCodingTest.API
         {
             record.Id = _index++;
             _inMemoryCache.Add(record);
+
+            Thread.Sleep(1000); // long running operation
         }
 
         // PUT api/<controller>/5
@@ -70,12 +73,16 @@ namespace ITSMCodingTest.API
         {
             _inMemoryCache.Remove(_inMemoryCache.Find(x => x.Id == id));
             _inMemoryCache.Add(record);
+
+            Thread.Sleep(1000); // long running operation
         }
 
         // DELETE api/<controller>/5
         public void Delete(int id)
         {
             _inMemoryCache.Remove(_inMemoryCache.Find(x => x.Id == id));
+
+            Thread.Sleep(1000); // long running operation
         }
     }
 }
