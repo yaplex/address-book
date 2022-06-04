@@ -1,47 +1,22 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Web.Http;
 using ITSMCodingTest.Common.Dto;
+using ITSMCodingTest.Domain.AddressBook.Commands;
+using MediatR;
 
 namespace ITSMCodingTest.API
 {
     public class AddressBookController : ApiController
     {
+        private readonly IMediator _mediator;
         private static readonly List<AddressBookRecordDto> _inMemoryCache = new List<AddressBookRecordDto>();
         private static int _index = 15;
-        static AddressBookController()
+
+        public AddressBookController(IMediator mediator)
         {
-            var retult = new List<AddressBookRecordDto>
-            {
-                new AddressBookRecordDto
-                {
-                    Address = "111 Pacific Ave.",
-                    AddressLine2 = "Apt 1234",
-                    City = "Toronto",
-                    Country = "Canada",
-                    EmailAddress = "alex@yaplex.com",
-                    FirstName = "Alex",
-                    LastName = "Shapovalov",
-                    Id = 13,
-                    PhoneNumber = "647 328 3809",
-                    PostalZip = "M6P 2P2",
-                    ProvinceState = "Ontario"
-                },
-                new AddressBookRecordDto
-                {
-                    Address = "222 Pacific Ave.",
-                    City = "Toronto 2",
-                    Country = "Canada 2",
-                    EmailAddress = "alex2@yaplex.com",
-                    FirstName = "Alex 2",
-                    LastName = "Shapovalov 2",
-                    Id = 14,
-                    PhoneNumber = "647 328 3809 2",
-                    PostalZip = "M6P 2P3",
-                    ProvinceState = "Ontario 2"
-                }
-            };
-            _inMemoryCache.AddRange(retult);
+            _mediator = mediator;
         }
 
         // GET api/<controller>
@@ -60,8 +35,10 @@ namespace ITSMCodingTest.API
         }
 
         // POST api/<controller>
-        public void Post([FromBody] AddressBookRecordDto record)
+        public async Task Post([FromBody] AddressBookRecordDto record)
         {
+            await _mediator.Send(new CreateAddressBookRecordCommand(record));
+
             record.Id = _index++;
             _inMemoryCache.Add(record);
 
