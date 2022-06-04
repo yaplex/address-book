@@ -6,11 +6,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AddressBookService } from './services/addressbook.service';
 import { AddressBookEntriesComponent } from './components/address-book-entries/address-book-entries.component';
+import { AddressBookEntryViewComponent } from './components/address-book-entry-view/address-book-entry-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddressBookEntriesComponent
+    AddressBookEntriesComponent,
+    AddressBookEntryViewComponent
   ],
   imports: [
     BrowserModule,

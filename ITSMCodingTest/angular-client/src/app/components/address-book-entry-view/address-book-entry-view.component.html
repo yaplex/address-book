@@ -1,0 +1,29 @@
+<div class="address-book-display" id="readOnlyDisplay">
+    <div id="readOnlyPanel">
+        <div class="row">
+            <div class="col-12 text-center">
+                <img src="/Content/Images/blankuser.png" onerror="this.src = 'Content/Images/blankuser.png';"
+                    class="display-photo" id="displayPhoto" />
+                <h4 id="displayName">{{addressBookReadOnly.FirstName}} {{addressBookReadOnly.LastName}}</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6" id="displayAddressColumn">
+                Address
+                <ul class="fa-ul">
+                    <li><span class="fa-li"><i class="fas fa-map-marker-alt"></i></span><span
+                            id="displayAddress">{{addressBookReadOnly.Address}}</span></li>
+                </ul>
+            </div>
+            <div class="col-6" id="displayContactColumn">
+                Contact
+                <ul class="fa-ul">
+                    <li id="displayPhoneItem"><span class="fa-li"><i class="fas fa-phone"></i></span><span
+                            id="displayPhone">{{addressBookReadOnly.PhoneNumber}}</span></li>
+                    <li id="displayEmailItem"><span class="fa-li"><i class="fas fa-envelope"></i></span><span
+                            id="displayEmail">{{addressBookReadOnly.EmailAddress}}</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
