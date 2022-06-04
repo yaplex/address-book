@@ -21,6 +21,7 @@ export class AddressBookEntryEditComponent implements OnInit {
   }
 
   @Output() recordSavedUpdatedEvent = new EventEmitter<AddressBook>();
+  @Output() recordDeletedEvent = new EventEmitter<AddressBook>();
   @Output() selectRecordEvent = new EventEmitter<AddressBook>();
 
   allCountries: Array<Country> = [];
@@ -40,6 +41,7 @@ export class AddressBookEntryEditComponent implements OnInit {
       console.log("Form Submitted!");
 
       this.addressBookService.save(f.value).subscribe(data => {
+        this.selectRecordEvent.emit(f.value);
         this.recordSavedUpdatedEvent.emit();
       });
     }
@@ -51,6 +53,8 @@ export class AddressBookEntryEditComponent implements OnInit {
 
   onDeleteRecord(recordId: number): void {
     console.info(`Deleting: ${recordId}`);
-    this.recordSavedUpdatedEvent.emit();
+    this.addressBookService.delete(recordId).subscribe(data=> {
+      this.recordDeletedEvent.emit();
+    });
   }
 }

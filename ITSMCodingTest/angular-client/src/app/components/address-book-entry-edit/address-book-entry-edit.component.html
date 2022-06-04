@@ -86,7 +86,7 @@
         </div>
         <div class="row">
             <div class="col offset-2">
-                <button id="saveButton" (click)="onSaveAddressBookEntity(addressEntityForm)"
+                <button id="saveButton" [disabled]="!addressEntityForm.valid" (click)="onSaveAddressBookEntity(addressEntityForm)"
                     class="btn btn-sm btn-outline-success">Save</button>
                 <button id="cancelButton" (click)="selectRecord(addressBookEditable);"
                     class="btn btn-sm btn-outline-secondary">Cancel</button>

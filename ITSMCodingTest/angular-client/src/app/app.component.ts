@@ -26,6 +26,12 @@ export class AppComponent implements OnInit {
       this.canEditRecord = true;
     }
   }
+  recordDeletedEventHander():void{
+    this.showReadOnlyView = false;
+    this.showEditView = false;
+    this.selectedAddressBookRecord = new AddressBook();
+    this.reloadRecordsEvenSubject.next();
+  }
 
   recordSavedUpdatedHandler(): void{
     this.reloadRecordsEvenSubject.next();

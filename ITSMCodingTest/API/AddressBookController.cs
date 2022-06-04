@@ -75,6 +75,7 @@ namespace ITSMCodingTest.API
         // DELETE api/<controller>/5
         public void Delete(int id)
         {
+            _inMemoryCache.Remove(_inMemoryCache.Find(x => x.Id == id));
         }
     }
 }

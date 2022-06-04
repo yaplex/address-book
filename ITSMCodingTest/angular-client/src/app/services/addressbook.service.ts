@@ -3,12 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AddressBook } from '../models/address-book.model';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json'
-  })
-};
-
 @Injectable({
   providedIn: 'root'
 })
@@ -26,11 +20,16 @@ export class AddressBookService {
     if (record.Id) {
       // update PUT
       return this.http.put<AddressBook>(`${this.ADDRESS_BOOK_ENDPOINT
-        }/${record.Id}`, record, httpOptions);
+        }/${record.Id}`, record);
     } else {
       // create POST
-      return this.http.post<AddressBook>(this.ADDRESS_BOOK_ENDPOINT, record, httpOptions);
+      return this.http.post<AddressBook>(this.ADDRESS_BOOK_ENDPOINT, record);
     }
+  }
+
+  delete(recordId: number): Observable<number>{
+    return this.http.delete<number>(`${this.ADDRESS_BOOK_ENDPOINT
+}/${recordId}`);
   }
 
 }
