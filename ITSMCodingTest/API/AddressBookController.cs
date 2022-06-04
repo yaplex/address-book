@@ -24,6 +24,9 @@ namespace ITSMCodingTest.API
         public async Task<IEnumerable<AddressBookRecordDto>> Get()
         {
             var allRecords = await _mediator.Send(new GetAllRecordsQuery());
+
+            Thread.Sleep(1000); // long running operation
+            
             return allRecords;
         }
 

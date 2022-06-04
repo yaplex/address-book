@@ -35,7 +35,7 @@ export class AddressBookEntriesComponent implements OnInit, OnDestroy {
     this.addressBookRecords.forEach(r => {
       r.IsActive = false;      
     });
-    
+
     record.IsActive = true;
   }
 
@@ -50,10 +50,20 @@ export class AddressBookEntriesComponent implements OnInit, OnDestroy {
   removeClassHover(event: any): void {
     $(event.target).removeClass("hover");
   }
+ 
+  private showLoading(): void {
+    $(".loading-overlay-panel").show();
+  }
+
+  private hideLoading(): void {
+    $(".loading-overlay-panel").hide();
+  }
 
   loadAllRecords(): void {
+    this.showLoading();
     this.addressBookService.getAll().subscribe(data => {
       this.addressBookRecords = data;
+      this.hideLoading();
     })
   }
 

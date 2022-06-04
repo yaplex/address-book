@@ -35,13 +35,14 @@ export class AddressBookEntryEditComponent implements OnInit {
 
   ngOnInit(): void {
   }
-private showLoading(): void {
-  $(".loading-overlay-panel").show();
-}
 
-private hideLoading():void {
-  $(".loading-overlay-panel").hide();
-}
+  private showLoading(): void {
+    $(".loading-overlay-panel").show();
+  }
+
+  private hideLoading(): void {
+    $(".loading-overlay-panel").hide();
+  }
 
   onSaveAddressBookEntity(f: NgForm): void {
     if (f.valid) {
@@ -56,14 +57,14 @@ private hideLoading():void {
     }
   }
 
-  selectRecord(record: AddressBook): void{
-      this.selectRecordEvent.emit(record);
+  selectRecord(record: AddressBook): void {
+    this.selectRecordEvent.emit(record);
   }
 
   onDeleteRecord(recordId: number): void {
     console.info(`Deleting: ${recordId}`);
     this.showLoading();
-    this.addressBookService.delete(recordId).subscribe(data=> {
+    this.addressBookService.delete(recordId).subscribe(data => {
       this.recordDeletedEvent.emit();
       this.hideLoading();
     });
