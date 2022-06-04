@@ -168,6 +168,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\CountriesProviderController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -185,6 +186,7 @@
     </Compile>
     <Compile Include="Helpers\JsonNetResult.cs" />
     <Compile Include="Mapping\AddressBookMapping.cs" />
+    <Compile Include="Mapping\CountriesMapping.cs" />
     <Compile Include="Models\AddressBookModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -206,6 +208,7 @@
     <Compile Include="Helpers\BaseController.cs" />
     <Compile Include="Helpers\OperationResult.cs" />
     <Compile Include="Models\CountryView.cs" />
+    <Compile Include="Models\RestCountry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="API\AddressBookController.cs" />
     <Compile Include="Repository\AddressBookRepository.cs" />
@@ -301,7 +304,9 @@
     <Content Include="Models\AddressBookModel.edmx.diagram">
       <DependentUpon>AddressBookModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Helpers\countries.json" />
+    <Content Include="Helpers\countries.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="angular-client\.browserslistrc" />
     <Content Include="angular-client\.editorconfig" />
     <Content Include="angular-client\angular.json" />

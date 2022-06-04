@@ -3,6 +3,7 @@ import { AddressBook } from 'src/app/models/address-book.model';
 import { Country } from 'src/app/models/country.model';
 import { NgForm } from '@angular/forms';
 import { AddressBookService } from 'src/app/services/addressbook.service';
+import { CountriesProviderService } from 'src/app/services/countries-provider.service';
 declare var $: any;
 @Component({
   selector: 'app-address-book-entry-edit',
@@ -25,15 +26,14 @@ export class AddressBookEntryEditComponent implements OnInit {
   @Output() selectRecordEvent = new EventEmitter<AddressBook>();
 
   allCountries: Array<Country> = [];
-  constructor(private addressBookService: AddressBookService) {
-    this.allCountries.push(new Country("Canada", "CA", "CAD"));
-    this.allCountries.push(new Country("USA", "US", "USA"));
-    this.allCountries.push(new Country("Germany", "DE", "DEU"));
-    this.allCountries.push(new Country("Australia", "AU", "AUS"));
-
+  constructor(private addressBookService: AddressBookService, private countriesProviderService: CountriesProviderService) {
+ 
   }
 
   ngOnInit(): void {
+    this.countriesProviderService.getAll().subscribe(data=>{
+      this.allCountries = data;
+    });
   }
 
   private showLoading(): void {

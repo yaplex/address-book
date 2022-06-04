@@ -13,5 +13,7 @@
         /// Link to an SVG of the country's flag
         /// </summary>
         public string Flag { get; set; }
+
+        public string ThreeLetterCode { get; set; }
     }
 }
