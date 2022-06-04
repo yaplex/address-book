@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 import { AddressBook } from './models/address-book.model';
 
 @Component({
@@ -6,12 +7,16 @@ import { AddressBook } from './models/address-book.model';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  ngOnInit(): void {
+    this.recordSavedUpdatedHandler();
+  }
   showReadOnlyView: boolean = false;
   showEditView: boolean = false;
   canEditRecord: boolean = false;
 
   selectedAddressBookRecord: AddressBook = new AddressBook();
+  reloadRecordsEvenSubject: Subject<void> = new Subject<void>();
 
   selectedAddressBookRecordHandler(record: AddressBook): void{
     if(record){
@@ -22,10 +27,21 @@ export class AppComponent {
     }
   }
 
+  recordSavedUpdatedHandler(): void{
+    this.reloadRecordsEvenSubject.next();
+  }
+
   editRecord(record: AddressBook):void{
     if(record){
       this.showReadOnlyView = false;
       this.showEditView = true;
     }
+  }
+
+  addNewEntry(): void{
+    this.showReadOnlyView = false;
+    this.showEditView = true;
+
+    this.selectedAddressBookRecord = new AddressBook();
   }
 }

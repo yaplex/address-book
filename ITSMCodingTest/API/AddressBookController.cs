@@ -1,19 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
-using System.Web.Mvc;
 using ITSMCodingTest.Common.Dto;
-using ITSMCodingTest.Models;
 
 namespace ITSMCodingTest.API
 {
     public class AddressBookController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<AddressBookRecordDto> Get()
+        private static readonly List<AddressBookRecordDto> _inMemoryCache = new List<AddressBookRecordDto>();
+        private static int _index = 15;
+        static AddressBookController()
         {
-            var retult =  new List<AddressBookRecordDto>()
+            var retult = new List<AddressBookRecordDto>
             {
-                new AddressBookRecordDto()
+                new AddressBookRecordDto
                 {
                     Address = "111 Pacific Ave.",
                     AddressLine2 = "Apt 1234",
@@ -27,7 +26,7 @@ namespace ITSMCodingTest.API
                     PostalZip = "M6P 2P2",
                     ProvinceState = "Ontario"
                 },
-                new AddressBookRecordDto()
+                new AddressBookRecordDto
                 {
                     Address = "222 Pacific Ave.",
                     City = "Toronto 2",
@@ -41,12 +40,16 @@ namespace ITSMCodingTest.API
                     ProvinceState = "Ontario 2"
                 }
             };
-            foreach (var a in retult)
-            {
-                a.FullAddress = $"{a.Address} {a.AddressLine2}, {a.City}, {a.ProvinceState} {a.PostalZip} {a.Country}";
-            }
+            _inMemoryCache.AddRange(retult);
+        }
 
-            return retult;
+        // GET api/<controller>
+        public IEnumerable<AddressBookRecordDto> Get()
+        {
+            foreach (var a in _inMemoryCache)
+                a.FullAddress = $"{a.Address} {a.AddressLine2}, {a.City}, {a.ProvinceState} {a.PostalZip} {a.Country}";
+
+            return _inMemoryCache;
         }
 
         // GET api/<controller>/5
@@ -58,11 +61,15 @@ namespace ITSMCodingTest.API
         // POST api/<controller>
         public void Post([FromBody] AddressBookRecordDto record)
         {
+            record.Id = _index++;
+            _inMemoryCache.Add(record);
         }
 
         // PUT api/<controller>/5
         public void Put(int id, [FromBody] AddressBookRecordDto record)
         {
+            _inMemoryCache.Remove(_inMemoryCache.Find(x => x.Id == id));
+            _inMemoryCache.Add(record);
         }
 
         // DELETE api/<controller>/5

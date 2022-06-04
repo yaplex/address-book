@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { AddressBook } from '../../models/address-book.model';
 import { AddressBookService } from '../../services/addressbook.service';
 declare var $: any;
@@ -8,16 +9,24 @@ declare var $: any;
   templateUrl: './address-book-entries.component.html',
   styleUrls: ['./address-book-entries.component.sass']
 })
-export class AddressBookEntriesComponent implements OnInit {
+export class AddressBookEntriesComponent implements OnInit, OnDestroy {
   addressBookRecords: Array<AddressBook> = [];
+  @Input()
+  reloadAllRecordsEvent!: Observable<void>;
 
   @Output() selectedAddressBookEvent = new EventEmitter<AddressBook>();
 
+  private eventsSubscription!: Subscription;
   constructor(private addressBookService: AddressBookService) { }
   ngOnInit(): void {
-    this.addressBookService.getAll().subscribe(data => {
-      this.addressBookRecords = data;
-    })
+    this.eventsSubscription = this.reloadAllRecordsEvent.subscribe(() => {
+        this.loadAllRecords();
+    });
+
+    this.loadAllRecords();
+  }
+  ngOnDestroy() {
+    this.eventsSubscription.unsubscribe();
   }
 
   recordSelected(record: AddressBook): void{
@@ -31,4 +40,12 @@ export class AddressBookEntriesComponent implements OnInit {
   removeClass(event: any): void {
     $(event.target).removeClass("hover");
   }
+
+  loadAllRecords(): void {
+    this.addressBookService.getAll().subscribe(data => {
+      this.addressBookRecords = data;
+    })
+  }
+
 }
+

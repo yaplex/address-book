@@ -6,7 +6,7 @@
     <div class="col-12">
       <div class="address-book-toolbar">
         <button id="newButton" class="btn btn-outline-dark toolbar-button" title="Add Entry" data-toggle="tooltip"
-          onclick="addNewEntry();"><i class="fas fa-plus"></i></button>
+          (click)="addNewEntry();"><i class="fas fa-plus"></i></button>
         <button id="editButton" class="btn btn-outline-dark toolbar-button" title="Edit" data-toggle="tooltip"
           (click)="editRecord(selectedAddressBookRecord)" [disabled]="!canEditRecord"><i
             class="fas fa-edit"></i></button>
@@ -20,7 +20,8 @@
   <div class="row">
     <!--  This part is the record entries  -->
     <div class="col-4">
-      <app-address-book-entries (selectedAddressBookEvent)="selectedAddressBookRecordHandler($event)">
+      <app-address-book-entries (selectedAddressBookEvent)="selectedAddressBookRecordHandler($event)"
+      [reloadAllRecordsEvent]="reloadRecordsEvenSubject.asObservable()">
       </app-address-book-entries>
     </div>
 
@@ -28,7 +29,7 @@
       <app-address-book-entry-view *ngIf="showReadOnlyView" [addressBookReadOnly]="selectedAddressBookRecord">
       </app-address-book-entry-view>
 
-      <app-address-book-entry-edit *ngIf="showEditView" [addressBookEditable]="selectedAddressBookRecord"></app-address-book-entry-edit>
+      <app-address-book-entry-edit *ngIf="showEditView" [addressBookEditable]="selectedAddressBookRecord"  (recordSavedUpdatedEvent)="recordSavedUpdatedHandler()"></app-address-book-entry-edit>
     </div>
   </div>
 

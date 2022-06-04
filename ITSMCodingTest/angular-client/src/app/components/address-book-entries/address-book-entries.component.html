@@ -2,7 +2,7 @@
     <div *ngFor="let record of addressBookRecords; let i = index" class="address-book-record item-{{i}}"
         (mouseover)="addClass($event)" 
         (mouseout)="removeClass($event)" 
-        (click)="recordSelected(record)">
+        (click)="recordSelected(record)" >
         {{record.FirstName}} - {{record.LastName}}
     </div>
 </div>
