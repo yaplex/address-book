@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\henry\source\repos\HankChill\ITSMCodingTest\ITSMCodingTest\Models\AddressBookModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\yaple\source\repos\public\address-book\ITSMCodingTest\Models\AddressBookModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

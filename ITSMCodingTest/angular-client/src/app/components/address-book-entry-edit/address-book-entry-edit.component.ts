@@ -57,6 +57,17 @@ export class AddressBookEntryEditComponent implements OnInit {
     }
   }
 
+  onFileChange(event: Event):void{
+    const element = event.currentTarget as HTMLInputElement;
+    let fileList: FileList | null = element.files;
+    if (fileList) {
+      console.log("FileUpload -> files", fileList);
+      this.addressBookService.uploadPhoto(fileList[0]).subscribe(data => {
+        this.addressBookEditable.Photo = data;
+      });
+    }
+  }
+
   selectRecord(record: AddressBook): void {
     this.selectRecordEvent.emit(record);
   }

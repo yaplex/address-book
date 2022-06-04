@@ -20,5 +20,6 @@ namespace ITSMCodingTest.Common.Dto
         public string PhoneNumber { get; set; }
         public string EmailAddress { get; set; }
         public string FullAddress { get; set; }
+        public string Photo { get; set; }
     }
 }

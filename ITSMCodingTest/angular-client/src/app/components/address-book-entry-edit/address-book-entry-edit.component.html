@@ -1,19 +1,20 @@
 <div class="address-book-display" id="editableDisplay">
-    <form #addressEntityForm="ngForm">
+    <form #addressEntityForm="ngForm" enctype="multipart/form-data">
         <input type="hidden" id="Id" name="Id" [(ngModel)]="addressBookEditable.Id" />
+        <input type="hidden" id="Photo" name="Photo" [(ngModel)]="addressBookEditable.Photo" />
 
         <!--  Photo  -->
         <div class="row mb-3">
             <label class="col-2 control-label">Photo:</label>
             <div class="col">
-                <img id="editPhoto" src="/Content/Images/blankuser.png" class="record-photo"
+                <img src="{{addressBookEditable.Photo}}" class="record-photo"
                     onerror="this.src = 'Content/Images/blankuser.png';" />
             </div>
         </div>
         <div class="row mb-3">
             <label class="col-2 control-label" for="photoUpload">New Photo:</label>
             <div class="col">
-                <input type="file" class="form-control" id="photoUpload" />
+                <input type="file" class="form-control" (change)="onFileChange($event)" />
             </div>
         </div>
         <!--  First and Last Name  -->
