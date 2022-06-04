@@ -16,6 +16,7 @@ namespace ITSMCodingTest.Repository
         Task<AddressRecord> LoadAsync(int id);
 
         Task Commit();
+        void Delete(AddressRecord record);
     }
     public class AddressBookRepository: IAddressBookRepository
     {
@@ -44,6 +45,11 @@ namespace ITSMCodingTest.Repository
         public async Task Commit()
         {
             await _dbContext.SaveChangesAsync();
+        }
+
+        public void Delete(AddressRecord record)
+        {
+            _dbContext.AddressRecords.Remove(record);
         }
     }
 }

@@ -12,9 +12,7 @@ namespace ITSMCodingTest.API
     public class AddressBookController : ApiController
     {
         private readonly IMediator _mediator;
-        private static readonly List<AddressBookRecordDto> _inMemoryCache = new List<AddressBookRecordDto>();
-        private static int _index = 15;
-
+     
         public AddressBookController(IMediator mediator)
         {
             _mediator = mediator;
@@ -51,9 +49,9 @@ namespace ITSMCodingTest.API
         }
 
         // DELETE api/<controller>/5
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            _inMemoryCache.Remove(_inMemoryCache.Find(x => x.Id == id));
+            await _mediator.Send(new DeleteAddressBookRecordCommand(id));
 
             Thread.Sleep(1000); // long running operation
         }

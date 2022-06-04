@@ -175,6 +175,7 @@
     <Compile Include="AutoMapperModule.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Domain\AddressBook\Commands\CreateAddressBookRecordCommand.cs" />
+    <Compile Include="Domain\AddressBook\Commands\DeleteAddressBookRecordCommand.cs" />
     <Compile Include="Domain\AddressBook\Commands\UpdateAddressBookRecordCommand.cs" />
     <Compile Include="Domain\AddressBook\Queries\GetAllRecordsQuery.cs" />
     <Compile Include="Domain\AddressBook\Queries\GetAllRecordsQueryHandler.cs" />
