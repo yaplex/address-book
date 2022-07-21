@@ -1,11 +1,7 @@
 # ITSM Process & Operations - Technology - Coding Exercise
 
 * This is the GitHub URL: https://github.com/yaplex/address-book
-* This is the live URL: http://itsmcodingtest.azurewebsites.net/
 
-I deployed the app to **Azure with Azure SQL Database** .
-
-There is still a lot to do. 
 
 ## Some highlights: 
 Based on the requirements and provided template the app looks like SPA, so I **used Angular instead of jQuery**, I feel like that is a better alternative.
