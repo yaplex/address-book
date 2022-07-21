@@ -1,8 +1,5 @@
 # ITSM Process & Operations - Technology - Coding Exercise
 
-* This is the GitHub URL: https://github.com/yaplex/address-book
-
-
 ## Some highlights: 
 Based on the requirements and provided template the app looks like SPA, so I **used Angular instead of jQuery**, I feel like that is a better alternative.
 The app is ready to run on local, but you may need a `node.js` to execute. 
